@@ -872,7 +872,7 @@ proto_register_dusbv(void)
             },
             { &hf_dusbv_error,
               { "Error", "dusbv.error",
-                      FT_UINT16, BASE_NONE, NULL, 0,
+                      FT_UINT16, BASE_HEX, NULL, 0,
                       "Error Code", HFILL }
             },
             { &hf_dusbv_data,
