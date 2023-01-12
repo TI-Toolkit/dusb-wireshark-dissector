@@ -1,1 +1,12 @@
 Protocol dissector for TI calculators' DUSB protocol
+
+Installation:
+- Copy dusb.so to ~/.local/lib/wireshark/plugins/4.0/epan/
+
+Building:
+- Clone the Wireshark repository.
+- Clone this repository into plugins/epan/dusb
+- Move CMakeListsCustom.txt.example to CMakeListsCustom.txt
+- Add plugins/epan/dusb to CUSTOM_PLUGIN_SRC_DIR
+- Build Wireshark as usual
+- The plugin will be output to run/plugins/4.0/epan/dusb.so
