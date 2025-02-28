@@ -17,6 +17,7 @@
 #include <config.h>
 
 #include <epan/packet.h>   /* Should be first Wireshark include (other than config.h) */
+#include <epan/conversation.h>
 #include <epan/dissectors/packet-usb.h>
 #include <stdio.h>
 #include <epan/reassemble.h>
