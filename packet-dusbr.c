@@ -17,6 +17,7 @@
 #include <config.h>
 
 #include <epan/packet.h>   /* Should be first Wireshark include (other than config.h) */
+#include <epan/conversation.h>
 #include <epan/dissectors/packet-usb.h>
 #include <stdio.h>
 #include <epan/reassemble.h>
@@ -107,7 +108,7 @@ dissect_dusbr(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
     if (tvb_reported_length(tvb) > dusbr_MAX_LENGTH)
         return 0;
 
-    guint8 type = tvb_get_guint8(tvb, 4);
+    guint8 type = tvb_get_uint8(tvb, 4);
     guint32 len = tvb_get_ntohl(tvb, 0);
 
     if (type == 0)
@@ -165,7 +166,7 @@ dissect_dusbr(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
     proto_tree_add_uint(dusbr_tree, hf_dusbr_len, tvb,
                         0, 4, tvb_get_ntohl(tvb, 0));
     proto_tree_add_uint(dusbr_tree, hf_dusbr_type, tvb,
-                                    4, 1, tvb_get_guint8(tvb, 4));
+                                    4, 1, tvb_get_uint8(tvb, 4));
 
     /* Continue adding tree items to process the packet here... */
 
