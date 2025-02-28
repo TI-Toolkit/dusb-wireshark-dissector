@@ -402,7 +402,7 @@ dissect_dusbv(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
                 proto_tree_add_uint(dusbv_tree, hf_dusbv_param_id, tvb,
                                     offset, 2, tvb_get_ntohs(tvb, offset));
                 offset += 2;
-                gboolean valid = !tvb_get_guint8(tvb, offset);
+                gboolean valid = !tvb_get_uint8(tvb, offset);
                 proto_tree_add_boolean(dusbv_tree, hf_dusbv_param_valid, tvb,
                                        offset, 1, valid);
                 offset++;
@@ -455,7 +455,7 @@ dissect_dusbv(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
                 proto_tree_add_uint(dusbv_tree, hf_dusbv_attr_id, tvb,
                                     offset, 2, tvb_get_ntohs(tvb, offset));
                 offset += 2;
-                gboolean valid = !tvb_get_guint8(tvb, offset);
+                gboolean valid = !tvb_get_uint8(tvb, offset);
                 proto_tree_add_boolean(dusbv_tree, hf_dusbv_attr_valid, tvb,
                                        offset, 1, valid);
                 offset++;
@@ -546,7 +546,7 @@ dissect_dusbv(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
             // if action == KEY
             //   16 bits: keycode (le on z80, be on ez80)
             offset = read_name(tvb, dusbv_tree, offset);
-            int action = tvb_get_guint8(tvb, offset);
+            int action = tvb_get_uint8(tvb, offset);
             proto_tree_add_uint(dusbv_tree, hf_dusbv_action, tvb,
                                 offset, 1, action);
             offset++;
@@ -596,7 +596,7 @@ read_name(tvbuff_t *tvb, proto_tree *tree, int offset) {
     // 8 bits: length of name of file
     // file name
     // null terminator
-    guint8 folder_name_len = tvb_get_guint8(tvb, offset);
+    guint8 folder_name_len = tvb_get_uint8(tvb, offset);
     proto_tree_add_uint(tree, hf_dusbv_folder_name_len, tvb,
                         offset, 1, folder_name_len);
     offset++;
@@ -605,7 +605,7 @@ read_name(tvbuff_t *tvb, proto_tree *tree, int offset) {
                               offset, folder_name_len + 1, ENC_UTF_8);
         offset += folder_name_len + 1;
     }
-    guint8 file_name_len = tvb_get_guint8(tvb, offset);
+    guint8 file_name_len = tvb_get_uint8(tvb, offset);
     proto_tree_add_uint(tree, hf_dusbv_file_name_len, tvb,
                         offset, 1, file_name_len);
     offset++;
